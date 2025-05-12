@@ -38,18 +38,18 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::find($id);
-        return $book;
+        return view('books.edit', ['book' => $book]);
     }
 
     public function update(Request $request, $id)
     {
         $book = Book::find($id);
         $book->update([
-            'title' => $request['title'],
-            'author' => $request['author'],
-            'released_at' => $request['released_at'],
+            'title' => $request->title,
+            'author' => $request->author,
+            'released_at' => $request->released_at,
         ]);
 
-        return redirect('/books/' . $book->id);
+        return redirect('/books');
     }
 }
